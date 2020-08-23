@@ -1,8 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: "/* code-comments */",
+    author: "Stephen Weiss",
+    description: "notes on life and software.",
+    siteUrl: "https://stepehncharlesweiss.com",
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -11,6 +12,32 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `blog`,
+        path: `${__dirname}/digital-garden/notes`,
+      },
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: `language-`,
+              inlineCodeMarker: `>`,
+              aliases: {
+                zsh: "bash",
+                zsh: "shell",
+                js: "javascript",
+              },
+            },
+          },
+        ],
       },
     },
     `gatsby-transformer-sharp`,
